@@ -59,6 +59,6 @@ for line in ser:
         message = time.strftime("%Y-%m-%d %H:%M:%S\n",lt)
     if line.startswith("<"):
         message += line
-        sendMessage(message)
+        sendMessage(message,config)
     else:
         message += line
