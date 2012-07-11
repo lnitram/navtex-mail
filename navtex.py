@@ -4,11 +4,10 @@ import time
 import ConfigParser
 import sys
 
-
 def readConfig(configfile):
     config = ConfigParser.RawConfigParser()
     config.read(configfile)
-    res = { 
+    res = {
            "server":config.get("email", "server"),
            "username":config.get("email", "username"),
            "password":config.get("email","password"),
@@ -32,7 +31,6 @@ def getConfigFilename():
     else:
         print "Usage: python navtex.py configfile.cfg"
         return None
-
 
 #Read config-filename from commandline argument
 configfilename = getConfigFilename()
