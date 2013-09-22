@@ -1,0 +1,9 @@
+SELECT CHANNEL A: $A
+SELECT CHANNEL B: $B
+SELECT TIMED A  : $A,hhmm,hhmm
+SELECT TIMED B  : $B,hhmm,hhmm
+SET CLOCK       : $C,hhmm
+DOWNLOAD ALL    : $S
+SHOW VERSION    : $V
+
+\r\n
