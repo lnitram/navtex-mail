@@ -14,7 +14,8 @@ def readConfig(configfile):
            "sender": config.get("email","sender"),
            "recipient":config.get("email","recipient"),
            "serialport":config.get("serial","port"),
-           "baudrate":config.getint("serial","baud")
+           "baudrate":config.getint("serial","baud"),
+           "storagepath":config.get("storage","path")
            }
     return res
 
@@ -24,6 +25,13 @@ def sendMessage(message,config):
     smtp.login(config["username"],config["password"]);
     smtp.sendmail(config["sender"],config["recipient"],message)
     smtp.quit()
+    
+def saveMessage(message,config):
+    lt = time.localtime()
+    filename = config["storagepath"] + "navtex_" +  time.strftime("%Y-%m-%d-%H-%M-%S",lt) + ".txt"
+    f = open(filename,'w')
+    f.write(message)
+    f.close()
 
 def getConfigFilename():
     if (len(sys.argv) > 1):
@@ -60,5 +68,6 @@ for line in ser:
     if line.startswith("<"):
         message += line
         sendMessage(message,config)
+        saveMessage(message,config)
     else:
         message += line
